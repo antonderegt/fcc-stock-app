@@ -7,7 +7,7 @@ import store from './store'
 
 // Socket IO
 import VueSocketio from 'vue-socket.io';
-Vue.use(VueSocketio, `https://stockwatcher-anterderegt.herokuapp.com:${process.env.PORT}`)
+Vue.use(VueSocketio, `https://stockwatcher-anterderegt.herokuapp.com`)
 
 Vue.use(VueRouter)
 import Home from './components/Home.vue'
