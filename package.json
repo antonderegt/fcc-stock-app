@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "serve": "cross-env NODE_ENV=production webpack -w",
-    "start": "webpack"
+    "start": "node server"
   },
   "dependencies": {
     "axios": "^0.16.1",
@@ -23,8 +23,7 @@
     "vue-chartjs": "^2.6.3",
     "vue-router": "^2.4.0",
     "vue-socket.io": "^2.1.1-a",
-    "vuex": "^2.3.0",
-    "webpack": "^2.5.1"
+    "vuex": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
