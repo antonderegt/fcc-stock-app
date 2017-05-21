@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './dist/index.html'))
 });
 
-const portApp = process.env.PORT_APP || 3000,
+const portApp = process.env.PORT || 3000,
       portIO = process.env.PORT_IO || 1923;
 app.listen(portApp, () => console.log('Running on localhost:', portApp))
 server.listen(portIO)
