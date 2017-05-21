@@ -23,7 +23,8 @@
     "vue-chartjs": "^2.6.3",
     "vue-router": "^2.4.0",
     "vue-socket.io": "^2.1.1-a",
-    "vuex": "^2.3.0"
+    "vuex": "^2.3.0",
+    "webpack": "^2.5.1"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
