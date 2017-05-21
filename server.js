@@ -1,17 +1,21 @@
 const express = require('express'),
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    path = require('path'),
-    count = require('./server/routes/count')
+      app = express(),
+      server = require('http').Server(app),
+      io = require('socket.io')(server),
+      mongoose = require('mongoose'),
+      bodyParser = require('body-parser'),
+      path = require('path'),
+      stock = require('./server/routes/stock'),
+      controllers = require('./server/controllers'),
+      axios = require('axios')
 
-let app = express()
 require('dotenv').load();
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI);
 
 app.use(bodyParser.json())
-app.use('/api/count', count)
+app.use('/api/stock', stock)
 
 app.use(express.static(path.join(__dirname, './dist')))
 
@@ -19,5 +23,34 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './dist/index.html'))
 });
 
-const port =  process.env.PORT || 3000;
-app.listen(port, () => console.log('Running on localhost:', port))
+const portApp = process.env.PORT_APP || 3000,
+      portIO = process.env.PORT_IO || 1923;
+app.listen(portApp, () => console.log('Running on localhost:', portApp))
+server.listen(portIO)
+
+// ------------------------------------------------------------
+
+io.on('connection', (socket) => {
+  let controller = controllers['stock']
+
+  // The client sends 'addstock' event to server
+  socket.on('addstock', symbol => {
+    axios.get(`https://www.quandl.com/api/v3/datasets/WIKI/${symbol}.json?api_key=${process.env.QUANDL_API_KEY}`)
+    .then(response => {
+      controller.addStock(symbol, (err, result) => {
+        if(err) throw err
+        controller.findAll((err, result) => {
+          if(err) throw err
+          io.emit('newstock', result);
+        })
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  })
+
+  socket.on('deletestock', symbol => {
+    io.emit('deletestock', symbol)
+  })
+});

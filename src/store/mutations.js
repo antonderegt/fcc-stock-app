@@ -1,10 +1,19 @@
 import * as types from './mutation-types'
 
 export const mutations = {
-  [types.GET_COUNT] (state, count_payload) {
-    state.counts = count_payload
+  [types.GET_STOCK] (state, stock_payload) {
+    state.stocks.push(stock_payload)
   },
-  [types.INC_COUNT] (state, count_payload) {
-    state.counts.count = count_payload
+  [types.RESET_STOCKS] (state, stock_payload) {
+    state.stocks = []
+  },
+  [types.DELETE_STOCK] (state, stock_payload) {
+    state.stocks = state.stocks.filter(stock => {
+      if(stock.symbol !== stock_payload) {
+        return stock
+      } else {
+        return
+      }
+    })
   }
 }

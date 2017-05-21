@@ -6,9 +6,7 @@ import * as actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  counts: {
-    count: -1
-  }
+  stocks: []
 }
 
 export default new Vuex.Store({

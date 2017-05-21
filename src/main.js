@@ -5,12 +5,16 @@ import App from './components/App.vue'
 
 import store from './store'
 
+// Socket IO
+import VueSocketio from 'vue-socket.io';
+Vue.use(VueSocketio, process.env.IO_URL);
+
 Vue.use(VueRouter)
-import Counter from './components/Counter.vue'
+import Home from './components/Home.vue'
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/counter', component: Counter }
+    { path: '/', component: Home }
   ]
 })
 

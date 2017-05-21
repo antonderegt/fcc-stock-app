@@ -55,7 +55,8 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
-      }
+      },
+      IO_URL: 'http://localhost:1923'
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,

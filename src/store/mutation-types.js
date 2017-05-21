@@ -1,2 +1,3 @@
-export const GET_COUNT = 'GET_COUNT'
-export const INC_COUNT = 'INC_COUNT'
+export const GET_STOCK = 'GET_STOCK'
+export const RESET_STOCKS = 'RESET_STOCKS'
+export const DELETE_STOCK = 'DELETE_STOCK'

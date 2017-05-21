@@ -1,25 +1,10 @@
 <template>
   <div id="app">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/counter">Counter</router-link>
-    <h1>{{msg}}</h1>
-    <hr />
-    <h5>Router View</h5>
+    <h1>Stock Watcher</h1>
     <hr />
     <router-view />
   </div>
 </template>
-
-<script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome'
-    }
-  }
-}
-</script>
 
 <style>
 #app {
@@ -28,7 +13,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 h1, h2 {
