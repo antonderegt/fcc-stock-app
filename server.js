@@ -1,6 +1,6 @@
 const express = require('express'),
       app = express(),
-      server = require('http').Server(app),
+      server = require('http').createServer(app),
       io = require('socket.io')(server),
       mongoose = require('mongoose'),
       bodyParser = require('body-parser'),
@@ -23,10 +23,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './dist/index.html'))
 });
 
-const portApp = process.env.PORT || 3000,
-      portIO = process.env.PORT_IO || 1923;
-app.listen(portApp, () => console.log('Running on localhost:', portApp))
-server.listen(portIO)
+const portApp = process.env.PORT || 3000
+server.listen(portApp, () => console.log('Running on localhost:', portApp))
 
 // ------------------------------------------------------------
 
